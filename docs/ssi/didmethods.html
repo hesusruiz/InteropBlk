@@ -15,7 +15,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Trust Framework: trusted registration process of legal entities" href="trustframework.html" />
+    <link rel="next" title="3. Trust Framework: trusted registration of legal entities" href="trustframework.html" />
     <link rel="prev" title="1. Introduction" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="../_static/my_style.css" type="text/css" />
@@ -38,7 +38,7 @@
         <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
       </li>
       <li class="ordenador">
-        <a href="trustframework.html" title="Next document"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a>
+        <a href="trustframework.html" title="Next document"><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities</a>
         »
       </li>
     </ul>
@@ -76,7 +76,7 @@
 This section describes in detail the different DID Methods used by each network.</p>
 <div class="section" id="elsi-did-method">
 <h2><span class="section-number">2.1. </span>ELSI DID Method<a class="headerlink" href="#elsi-did-method" title="Permalink to this headline">¶</a></h2>
-<p>In the Alastria Red T we use <strong>ELSI</strong> for juridical persons with identities anchored into a Public-Permissioned blockchain: <cite>did:elsi</cite>.</p>
+<p>In the Alastria Red T we use <strong>ELSI</strong> for juridical persons with identities anchored into a Public-Permissioned blockchain: <code class="samp docutils literal notranslate"><span class="pre">did:elsi</span></code>.</p>
 <p>The name ELSI stands for <strong>E</strong><code class="docutils literal notranslate"><span class="pre">TSI</span></code> <strong>L</strong><code class="docutils literal notranslate"><span class="pre">egal</span> <span class="pre">person</span></code> <strong>S</strong><code class="docutils literal notranslate"><span class="pre">emantics</span></code> <strong>I</strong><code class="docutils literal notranslate"><span class="pre">dentifier</span></code>, because it is based on the <em>Legal person semantic identifier</em> defined in the <a class="reference external" href="https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.04.02_20/en_31941201v010402a.pdf">European Norm ETSI EN 319 412-1</a>, related to digital signatures, peer entity authentication, data authentication as well as data confidentiality.</p>
 <p>The basic idea is to generate the DID deterministically from an existing and widely accepted identifier, which is already required by any organisation in the real world in order to perform any relevant activity.</p>
 <p>The rational for ELSI is the following:</p>
@@ -94,18 +94,18 @@ Of course, there is nothing preventing reuse of common logic across both impleme
 </dl>
 <p>These requirements have nothing to do with whether we use centralised technology or blockchains. It is an essential characterictic in any developed economy like the EU.</p>
 <p>This means that the creation of the DID is completely decentralised from the point of view of the blockchain networks, because the entities willing to participate already possess everything which is needed in order to create the DID. We do not need to put in place any other entity or system to create the DID.</p>
-<p>The ETSI norm on which ELSI is based specifies several possible identifiers that can be used to build the DID. The two most common and the ones used in ELSI are the <cite>VAT</cite> (Tax Identifier) and the <cite>LEI</cite> (<a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>).</p>
-<p>Using both <cite>VAT</cite> and <cite>LEI</cite> in creating the DID covers every juridical person that can participate in a blockchain network, not only in the EU but in most of the world. In any case, the system is extensible and it is fairly easy to incorporate new legal identifiers if the need arises in the future.</p>
+<p>The ETSI norm on which ELSI is based specifies several possible identifiers that can be used to build the DID. The two most common and the ones used in ELSI are the <code class="samp docutils literal notranslate"><span class="pre">VAT</span></code> (Tax Identifier) and the <code class="samp docutils literal notranslate"><span class="pre">LEI</span></code> (<a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>).</p>
+<p>Using both <code class="samp docutils literal notranslate"><span class="pre">VAT</span></code> and <code class="samp docutils literal notranslate"><span class="pre">LEI</span></code> in creating the DID covers every juridical person that can participate in a blockchain network, not only in the EU but in most of the world. In any case, the system is extensible and it is fairly easy to incorporate new legal identifiers if the need arises in the future.</p>
 <div class="section" id="elsi-did-syntax">
 <h3><span class="section-number">2.1.1. </span>ELSI DID syntax<a class="headerlink" href="#elsi-did-syntax" title="Permalink to this headline">¶</a></h3>
-<p>The ELSI DID Method refers only to legal persons, so we are using the <cite>id-etsi-qcs-SemanticsId-Legal</cite> definition described in Section 5.1 of ETSI EN 319 412-1.</p>
+<p>The ELSI DID Method refers only to legal persons, so we are using the <code class="samp docutils literal notranslate"><span class="pre">id-etsi-qcs-SemanticsId-Legal</span></code> definition described in Section 5.1 of ETSI EN 319 412-1.</p>
 <p>Creating a DID is extremely simple and fully decentralized (does not require participation of any central authority), assuming that the legal person already exists. Its definition using ABNF syntax is:</p>
 <div class="highlight-abnf notranslate"><div class="highlight"><pre><span></span><span class="nc">did</span> <span class="o">=</span> <span class="l">&quot;did:elsi:&quot;</span> <span class="nc">id-etsi-qcs-SemanticsId-Legal</span>
 </pre></div>
 </div>
 <p>Which is the concatenation of the prefix <code class="docutils literal notranslate"><span class="pre">did:elsi:</span></code> with the legal person identifier defined in ETSI EN 319 412-1. For the full syntax, please refer to the standards document, but for the two most common basic identifiers (VAT and LEI) the identifier is composed of:</p>
 <ul class="simple">
-<li><p>3 character legal person identity type reference, like <cite>VAT</cite> for identification based on a national value added tax identification number or <cite>LEI</cite> for the <a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>.</p></li>
+<li><p>3 character legal person identity type reference, like <code class="samp docutils literal notranslate"><span class="pre">VAT</span></code> for identification based on a national value added tax identification number or <code class="samp docutils literal notranslate"><span class="pre">LEI</span></code> for the <a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>.</p></li>
 <li><p>2 character ISO 3166 [2] country code;</p></li>
 <li><p>hyphen-minus “-” (0x2D (ASCII), U+002D (UTF-8)); and</p></li>
 <li><p>identifier (according to country and identity type reference).</p></li>
@@ -239,7 +239,7 @@ Of course, there is nothing preventing reuse of common logic across both impleme
                         title="previous chapter"><span class="section-number">1. </span>Introduction</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="trustframework.html"
-                        title="next chapter"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a></p>
+                        title="next chapter"><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities</a></p>
 <form class="search" action="../search.html" method="get">
   <input type="text" name="q"
    placeholder="type to search" />
@@ -259,7 +259,7 @@ Of course, there is nothing preventing reuse of common logic across both impleme
         <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
       </li>
       <li class="ordenador">
-        <a href="trustframework.html" title="Next document"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a>
+        <a href="trustframework.html" title="Next document"><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities</a>
         »
       </li>
     </ul>

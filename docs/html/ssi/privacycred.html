@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. References" href="references.html" />
-    <link rel="prev" title="3. Trust Framework: trusted registration process of legal entities" href="trustframework.html" />
+    <link rel="prev" title="3. Trust Framework: trusted registration of legal entities" href="trustframework.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="../_static/my_style.css" type="text/css" />
 
@@ -35,7 +35,7 @@
     <ul>
       <li class="ordenador">
         «
-        <a href="trustframework.html" title="Previous document"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a>
+        <a href="trustframework.html" title="Previous document"><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities</a>
       </li>
       <li class="ordenador">
         <a href="references.html" title="Next document"><span class="section-number">5. </span>References</a>
@@ -306,7 +306,7 @@ suitable nationally issued identity document.</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">DID</span></code></dt><dd><p>is the DID of the new entity. We support ELSI DID method (ELSI_DID_Method) and AlastriaID. The DID has to be created before the call to the API with the appropriate method for the DID. In the case of ELSI this is trivial and described in the section mentioned above.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></dt><dd><p>the domain name for the new entity in the Trust Framework. In the example it is <cite>in2.ala</cite> because it will be a sub-node of the Alastria one. The new identity will be created as a child node of the existing node owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>. If the parent domain name specified here is not owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>, an error is returned and no action is taken.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></dt><dd><p>the domain name for the new entity in the Trust Framework. In the example it is <code class="samp docutils literal notranslate"><span class="pre">in2.ala</span></code> because it will be a sub-node of the Alastria one. The new identity will be created as a child node of the existing node owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>. If the parent domain name specified here is not owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>, an error is returned and no action is taken.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">website</span></code></dt><dd><p>the website address in the off-chain world, so other participants can look more information about the entity. This field is informational only. However, it can be used by external appications to check that the entity in th ereal world corresponds to the one registered in th eblockchain.</p>
 </dd>
@@ -314,7 +314,7 @@ suitable nationally issued identity document.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">new_privatekey</span></code></dt><dd><p>is the Private Key of the new entity, in JWK format. In this case the new entity is IN2. Please make sure the server being called is highly trusted.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code></dt><dd><p>is the Private Key of the entity owning/controlling the parent node in the domain name, in JWK format. In this case the parent node is <cite>ala</cite>, corresponding to Alastria. Please make sure the server being called is highly trusted. Ideally, the server has to be operated by the same entity calling the API.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code></dt><dd><p>is the Private Key of the entity owning/controlling the parent node in the domain name, in JWK format. In this case the parent node is <code class="samp docutils literal notranslate"><span class="pre">ala</span></code>, corresponding to Alastria. Please make sure the server being called is highly trusted. Ideally, the server has to be operated by the same entity calling the API.</p>
 </dd>
 </dl>
 </div>
@@ -366,7 +366,7 @@ This flow is useful when some process has to be performed in-person in the offic
 <div class="section" id="elsi-a-did-method-for-legal-entities">
 <h2><span class="section-number">4.5. </span>ELSI: a DID Method for legal entities<a class="headerlink" href="#elsi-a-did-method-for-legal-entities" title="Permalink to this headline">¶</a></h2>
 <p>The system supports several DID Methods using the Universal Resolver to resolve each DID into a corresponding DID Document.
-But the main DID Method used for legal persons, anchored into a Public-Permissioned blockchain, is <em>ELSI</em>: <cite>did:elsi</cite>.</p>
+But the main DID Method used for legal persons, anchored into a Public-Permissioned blockchain, is <em>ELSI</em>: <code class="samp docutils literal notranslate"><span class="pre">did:elsi</span></code>.</p>
 <div class="section" id="elsi-did-syntax">
 <h3><span class="section-number">4.5.1. </span>ELSI DID syntax<a class="headerlink" href="#elsi-did-syntax" title="Permalink to this headline">¶</a></h3>
 <p>The name ELSI stands for <strong>E</strong>TSI <strong>L</strong>egal person <strong>S</strong>emantics <strong>I</strong>dentifier, because it is based on the <em>Legal person semantic identifier</em> defined in the <a class="reference external" href="https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.04.02_20/en_31941201v010402a.pdf">European Norm ETSI EN 319 412-1</a>, related to digital signatures, peer entity authentication, data authentication as well as data confidentiality.</p>
@@ -375,9 +375,9 @@ But the main DID Method used for legal persons, anchored into a Public-Permissio
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">did</span> <span class="o">=</span> <span class="s2">&quot;did:elsi:&quot;</span> <span class="nb">id</span><span class="o">-</span><span class="n">etsi</span><span class="o">-</span><span class="n">qcs</span><span class="o">-</span><span class="n">SemanticsId</span><span class="o">-</span><span class="n">Legal</span>
 </pre></div>
 </div>
-<p>Which is the concatenation of the prefix <cite>did:elsi:</cite> with the legal person identifier defined in ETSI EN 319 412-1. For the full syntax, please refer to the standards document, but for the two most common basic identifiers (VAT and LEI) the identifier is composed of:</p>
+<p>Which is the concatenation of the prefix <code class="samp docutils literal notranslate"><span class="pre">did:elsi:</span></code> with the legal person identifier defined in ETSI EN 319 412-1. For the full syntax, please refer to the standards document, but for the two most common basic identifiers (VAT and LEI) the identifier is composed of:</p>
 <ul class="simple">
-<li><p>3 character legal person identity type reference, like <cite>VAT</cite> for identification based on a national value added tax identification number or <cite>LEI</cite> for the <a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>.</p></li>
+<li><p>3 character legal person identity type reference, like <code class="samp docutils literal notranslate"><span class="pre">VAT</span></code> for identification based on a national value added tax identification number or <code class="samp docutils literal notranslate"><span class="pre">LEI</span></code> for the <a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>.</p></li>
 <li><p>2 character ISO 3166 [2] country code;</p></li>
 <li><p>hyphen-minus “-” (0x2D (ASCII), U+002D (UTF-8)); and</p></li>
 <li><p>identifier (according to country and identity type reference).</p></li>
@@ -484,7 +484,7 @@ But the main DID Method used for legal persons, anchored into a Public-Permissio
 <ol class="arabic">
 <li><p>The iss field (issuer in VC terminology), uses the DID method <code class="docutils literal notranslate"><span class="pre">elsi</span></code>, specific for legal persons and explained in a section below.</p></li>
 <li><p>There is an extension to specify the blockchain network (or networks) where the VC can be verified. More precisely, the <code class="docutils literal notranslate"><span class="pre">issuedAt</span></code> field of <code class="docutils literal notranslate"><span class="pre">credentialSubject</span></code> specifies the networks where the identity for the legal person that issued the credential can be verified.</p>
-<p>A legal person can have its <cite>elsi</cite> DID registered in one or more networks, and the same credential can be verified using any of those networks. The trust on the credential depends on the trust on the registration procedure of the identity of the signer. The Verifier entity can choose to verify the credential in whatever network is trusted to the Verifier.</p>
+<p>A legal person can have its <code class="samp docutils literal notranslate"><span class="pre">elsi</span></code> DID registered in one or more networks, and the same credential can be verified using any of those networks. The trust on the credential depends on the trust on the registration procedure of the identity of the signer. The Verifier entity can choose to verify the credential in whatever network is trusted to the Verifier.</p>
 <p>This mechanism provides a lot of flexibility in interoperability schemes across networks. More details are described in the section on interoperability.</p>
 </li>
 </ol>
@@ -714,7 +714,7 @@ The others are delegated to be resolved by their respective implementations.</p>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="trustframework.html"
-                        title="previous chapter"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a></p>
+                        title="previous chapter"><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="references.html"
                         title="next chapter"><span class="section-number">5. </span>References</a></p>
@@ -734,7 +734,7 @@ The others are delegated to be resolved by their respective implementations.</p>
     <ul>
       <li class="ordenador">
         «
-        <a href="trustframework.html" title="Previous document"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a>
+        <a href="trustframework.html" title="Previous document"><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities</a>
       </li>
       <li class="ordenador">
         <a href="references.html" title="Next document"><span class="section-number">5. </span>References</a>

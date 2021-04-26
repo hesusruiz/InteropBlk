@@ -2,19 +2,41 @@
 Trust Framework: trusted registration of legal entities
 #######################################################
 
+Each blockchain network has to implement its own Trust Framework, and there should be a global Trust Framework encompasing the Trust Frameworks of all interoperable networks.
+
+The trust framework of a blockchain network is basically composed of two things:
+
+1. A list of the identities of trusted organisations stored in the blockchain, together with associated information for each entity.
+2. A process to add, modify and delete the trusted entities.
+
 The trust framework is designed to be largely decentralised.
 
-The identities of the legal persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.
+The identities of the juridical persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.
 
 However, there is one centralised element: the root of trust at the top of the hierarchy should be a trusted entity in the ecosystem that is the one bootstraping the system. Typically it should be a regulatory body or a public administration.
 
-The approach is described in the following figure.
+The approach for a single blockchain network is described in the following figure.
 
 .. figure:: images/SafeIsland_TrustFramework.png
    :width: 80 %
    :alt: The Trust Framework in the blockchain
 
    The Trust Framework in the blockchain.
+
+
+The Trust Framework in a given blockchain is not really a flat list, but a hierarchical structure, implemented as a Smart Contract:
+
+* There is a special organisation which is at the root of the hierarchy. Ideally, this is a regulator, like the Central Bank of the country to manage banks, or the Ministry of Education to manage universities.
+* This root entity is responsible for registering the identities of some trusted entities. For example, in a country with several regions with autonomous competencies to manage universities, the Ministry of Education could register in the blockchain the identities of the regional institutions which are responsible for managing the universities in each of their regions.
+* Once this is done, each of the regional institutions can register the identities of dependent entities, like universities.
+* The hierarchy can have several levels. For example, a university can be big and have several organisational units with some autonomy, maybe distributed geographically. It can create sub-identities and register them as child nodes in the blockchain.
+
+Some observations about this structure:
+
+* An organisation can be registered in the blockchain only because its parent entity has registered it. No other entity in the Trust Framework can have performed the registration, not even the parent of the parent entity.
+* An organisation is responsible for all its child entities, represented as child nodes in the blockchain.
+* A third party
+
 
 
 *******************

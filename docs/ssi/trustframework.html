@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Trust Framework: trusted registration process of legal entities &#8212; Blockchain Interoperability</title>
+    <title>3. Trust Framework: trusted registration of legal entities &#8212; Blockchain Interoperability</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/better.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -70,16 +70,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="trust-framework-trusted-registration-process-of-legal-entities">
-<h1><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities<a class="headerlink" href="#trust-framework-trusted-registration-process-of-legal-entities" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="trust-framework-trusted-registration-of-legal-entities">
+<h1><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities<a class="headerlink" href="#trust-framework-trusted-registration-of-legal-entities" title="Permalink to this headline">¶</a></h1>
+<p>Each blockchain network has to implement its own Trust Framework, and there should be a global Trust Framework encompasing the Trust Frameworks of all interoperable networks.</p>
+<p>The trust framework of a blockchain network is basically composed of two things:</p>
+<ol class="arabic simple">
+<li><p>A list of the identities of trusted organisations stored in the blockchain, together with associated information for each entity.</p></li>
+<li><p>A process to add, modify and delete the trusted entities.</p></li>
+</ol>
 <p>The trust framework is designed to be largely decentralised.</p>
-<p>The identities of the legal persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.</p>
+<p>The identities of the juridical persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.</p>
 <p>However, there is one centralised element: the root of trust at the top of the hierarchy should be a trusted entity in the ecosystem that is the one bootstraping the system. Typically it should be a regulatory body or a public administration.</p>
-<p>The approach is described in the following figure.</p>
+<p>The approach for a single blockchain network is described in the following figure.</p>
 <div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/SafeIsland_TrustFramework.png"><img alt="The Trust Framework in the blockchain" src="../_images/SafeIsland_TrustFramework.png" style="width: 80%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The Trust Framework in the blockchain.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
+<p>The Trust Framework in a given blockchain is not really a flat list, but a hierarchical structure, implemented as a Smart Contract:</p>
+<ul class="simple">
+<li><p>There is a special organisation which is at the root of the hierarchy. Ideally, this is a regulator, like the Central Bank of the country to manage banks, or the Ministry of Education to manage universities.</p></li>
+<li><p>This root entity is responsible for registering the identities of some trusted entities. For example, in a country with several regions with autonomous competencies to manage universities, the Ministry of Education could register in the blockchain the identities of the regional institutions which are responsible for managing the universities in each of their regions.</p></li>
+<li><p>Once this is done, each of the regional institutions can register the identities of dependent entities, like universities.</p></li>
+<li><p>The hierarchy can have several levels. For example, a university can be big and have several organisational units with some autonomy, maybe distributed geographically. It can create sub-identities and register them as child nodes in the blockchain.</p></li>
+</ul>
+<p>Some observations about this structure:</p>
+<ul class="simple">
+<li><p>An organisation can be registered in the blockchain only because its parent entity has registered it. No other entity in the Trust Framework can have performed the registration, not even the parent of the parent entity.</p></li>
+<li><p>An organisation is responsible for all its child entities, represented as child nodes in the blockchain.</p></li>
+<li><p>A third party</p></li>
+</ul>
 <div class="section" id="creating-identities">
 <h2><span class="section-number">3.1. </span>Creating identities<a class="headerlink" href="#creating-identities" title="Permalink to this headline">¶</a></h2>
 <p>A new identity can only be registered as a sub-node by an existing entity already registered in the system. The API used is <code class="docutils literal notranslate"><span class="pre">/api/did/v1/identifiers</span></code> and its definition is the following:</p>
@@ -135,7 +154,7 @@
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">DID</span></code></dt><dd><p>is the DID of the new entity. We support ELSI DID method (ELSI_DID_Method) and AlastriaID. The DID has to be created before the call to the API with the appropriate method for the DID. In the case of ELSI this is trivial and described in the section mentioned above.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></dt><dd><p>the domain name for the new entity in the Trust Framework. In the example it is <cite>in2.ala</cite> because it will be a sub-node of the Alastria one. The new identity will be created as a child node of the existing node owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>. If the parent domain name specified here is not owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>, an error is returned and no action is taken.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></dt><dd><p>the domain name for the new entity in the Trust Framework. In the example it is <code class="samp docutils literal notranslate"><span class="pre">in2.ala</span></code> because it will be a sub-node of the Alastria one. The new identity will be created as a child node of the existing node owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>. If the parent domain name specified here is not owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>, an error is returned and no action is taken.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">website</span></code></dt><dd><p>the website address in the off-chain world, so other participants can look more information about the entity. This field is informational only. However, it can be used by external appications to check that the entity in th ereal world corresponds to the one registered in th eblockchain.</p>
 </dd>
@@ -143,7 +162,7 @@
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">new_privatekey</span></code></dt><dd><p>is the Private Key of the new entity, in JWK format. In this case the new entity is IN2. Please make sure the server being called is highly trusted.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code></dt><dd><p>is the Private Key of the entity owning/controlling the parent node in the domain name, in JWK format. In this case the parent node is <cite>ala</cite>, corresponding to Alastria. Please make sure the server being called is highly trusted. Ideally, the server has to be operated by the same entity calling the API.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code></dt><dd><p>is the Private Key of the entity owning/controlling the parent node in the domain name, in JWK format. In this case the parent node is <code class="samp docutils literal notranslate"><span class="pre">ala</span></code>, corresponding to Alastria. Please make sure the server being called is highly trusted. Ideally, the server has to be operated by the same entity calling the API.</p>
 </dd>
 </dl>
 </div>
@@ -158,7 +177,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. Trust Framework: trusted registration process of legal entities</a><ul>
+<li><a class="reference internal" href="#">3. Trust Framework: trusted registration of legal entities</a><ul>
 <li><a class="reference internal" href="#creating-identities">3.1. Creating identities</a></li>
 </ul>
 </li>

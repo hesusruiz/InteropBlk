@@ -51,7 +51,7 @@ templates_path = ['_templates']
 # """
 
 # The name of a reST role (builtin or Sphinx extension) to use as the default role, that is, for text marked up `like this`. This can be set to 'py:obj' to make `filter` a cross-reference to the Python function “filter”. The default is None, which doesn’t reassign the default role.
-default_role = None
+default_role = "samp"
 
 # figures, tables and code-blocks are automatically numbered if they have a caption
 numfig = True
