@@ -7,8 +7,8 @@ Blockchain interoperability based on Verifiable Credentials
    :maxdepth: 3
 
    ssi/introduction
-   ssi/trustframework
    ssi/didmethods
+   ssi/trustframework
    ssi/privacycred
    ssi/references
    

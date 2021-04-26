@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2. Trust Framework: trusted registration process of legal entities &#8212; InteropBlk</title>
+    <title>3. Trust Framework: trusted registration process of legal entities &#8212; Blockchain Interoperability</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/better.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -15,8 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. DID Methods for organisations" href="didmethods.html" />
-    <link rel="prev" title="1. Introduction" href="introduction.html" />
+    <link rel="next" title="4. PrivacyCred system" href="privacycred.html" />
+    <link rel="prev" title="2. DID Methods for organisations" href="didmethods.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="../_static/my_style.css" type="text/css" />
 
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-dark bg-primary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html ">
-          InteropBlk
+          Blockchain Interoperability
         </a>
       </div>
     </nav>
@@ -35,10 +35,10 @@
     <ul>
       <li class="ordenador">
         «
-        <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
+        <a href="didmethods.html" title="Previous document"><span class="section-number">2. </span>DID Methods for organisations</a>
       </li>
       <li class="ordenador">
-        <a href="didmethods.html" title="Next document"><span class="section-number">3. </span>DID Methods for organisations</a>
+        <a href="privacycred.html" title="Next document"><span class="section-number">4. </span>PrivacyCred system</a>
         »
       </li>
     </ul>
@@ -46,13 +46,13 @@
 
   <nav class="movil">
       <div class="movil">
-        <a class="btn btn-light" href="introduction.html" title="Prev document">
+        <a class="btn btn-light" href="didmethods.html" title="Prev document">
           <i class="bi bi-arrow-left-circle-fill" style="color:indigo;"></i>
           Previous
         </a>
       </div>
       <div class="movil floatright">
-        <a class="btn btn-light" href="didmethods.html" title="Next document">
+        <a class="btn btn-light" href="privacycred.html" title="Next document">
           Next
           <i class="bi bi-arrow-right-circle-fill" style="color:indigo;"></i>
         </a>
@@ -71,17 +71,17 @@
           <div class="body" role="main">
             
   <div class="section" id="trust-framework-trusted-registration-process-of-legal-entities">
-<h1><span class="section-number">2. </span>Trust Framework: trusted registration process of legal entities<a class="headerlink" href="#trust-framework-trusted-registration-process-of-legal-entities" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities<a class="headerlink" href="#trust-framework-trusted-registration-process-of-legal-entities" title="Permalink to this headline">¶</a></h1>
 <p>The trust framework is designed to be largely decentralised.</p>
 <p>The identities of the legal persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.</p>
 <p>However, there is one centralised element: the root of trust at the top of the hierarchy should be a trusted entity in the ecosystem that is the one bootstraping the system. Typically it should be a regulatory body or a public administration.</p>
 <p>The approach is described in the following figure.</p>
 <div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/SafeIsland_TrustFramework.png"><img alt="The Trust Framework in the blockchain" src="../_images/SafeIsland_TrustFramework.png" style="width: 80%;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">The Trust Framework in the blockchain.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The Trust Framework in the blockchain.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="creating-identities">
-<h2><span class="section-number">2.1. </span>Creating identities<a class="headerlink" href="#creating-identities" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Creating identities<a class="headerlink" href="#creating-identities" title="Permalink to this headline">¶</a></h2>
 <p>A new identity can only be registered as a sub-node by an existing entity already registered in the system. The API used is <code class="docutils literal notranslate"><span class="pre">/api/did/v1/identifiers</span></code> and its definition is the following:</p>
 <dl class="http post">
 <dt>
@@ -158,18 +158,18 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">2. Trust Framework: trusted registration process of legal entities</a><ul>
-<li><a class="reference internal" href="#creating-identities">2.1. Creating identities</a></li>
+<li><a class="reference internal" href="#">3. Trust Framework: trusted registration process of legal entities</a><ul>
+<li><a class="reference internal" href="#creating-identities">3.1. Creating identities</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="introduction.html"
-                        title="previous chapter"><span class="section-number">1. </span>Introduction</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="didmethods.html"
-                        title="next chapter"><span class="section-number">3. </span>DID Methods for organisations</a></p>
+                        title="previous chapter"><span class="section-number">2. </span>DID Methods for organisations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="privacycred.html"
+                        title="next chapter"><span class="section-number">4. </span>PrivacyCred system</a></p>
 <form class="search" action="../search.html" method="get">
   <input type="text" name="q"
    placeholder="type to search" />
@@ -186,10 +186,10 @@
     <ul>
       <li class="ordenador">
         «
-        <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
+        <a href="didmethods.html" title="Previous document"><span class="section-number">2. </span>DID Methods for organisations</a>
       </li>
       <li class="ordenador">
-        <a href="didmethods.html" title="Next document"><span class="section-number">3. </span>DID Methods for organisations</a>
+        <a href="privacycred.html" title="Next document"><span class="section-number">4. </span>PrivacyCred system</a>
         »
       </li>
     </ul>
@@ -197,13 +197,13 @@
 
   <nav class="movil">
       <div class="movil">
-        <a class="btn btn-light" href="introduction.html" title="Prev document">
+        <a class="btn btn-light" href="didmethods.html" title="Prev document">
           <i class="bi bi-arrow-left-circle-fill" style="color:indigo;"></i>
           Previous
         </a>
       </div>
       <div class="movil floatright">
-        <a class="btn btn-light" href="didmethods.html" title="Next document">
+        <a class="btn btn-light" href="privacycred.html" title="Next document">
           Next
           <i class="bi bi-arrow-right-circle-fill" style="color:indigo;"></i>
         </a>

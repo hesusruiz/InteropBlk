@@ -52,7 +52,7 @@
     \sphinxlogo
     \py@HeaderFamily
     {\Huge \@title }\par
-    {\Large and the eHealth Network Trust Framework }\par
+    {\Large based on Verifiable Credentials }\par
     \vspace{10pt}
     {\itshape\large \py@release \releaseinfo}\par
     \vspace{25pt}

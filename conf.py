@@ -17,7 +17,7 @@ sys.path.append(os.path.abspath("./_ext"))
 
 # -- Project information -----------------------------------------------------
 
-project = 'InteropBlk'
+project = 'Blockchain interoperability'
 copyright = '2021, Licensed under a Creative Commons Attribution 4.0 International license'
 author = 'Jesus Ruiz'
 release = "0.1.0"
@@ -69,7 +69,7 @@ pygments_style = "default"
 html_theme_path = ['sphinx-better-theme']
 html_theme = 'better'
 
-html_title = "InteropBlk"
+html_title = "Blockchain Interoperability"
 html_short_title = "Home"
 
 html_show_sphinx = False

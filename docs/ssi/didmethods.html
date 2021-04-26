@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. DID Methods for organisations &#8212; InteropBlk</title>
+    <title>2. DID Methods for organisations &#8212; Blockchain Interoperability</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/better.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -15,8 +15,8 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. PrivacyCred system" href="privacycred.html" />
-    <link rel="prev" title="2. Trust Framework: trusted registration process of legal entities" href="trustframework.html" />
+    <link rel="next" title="3. Trust Framework: trusted registration process of legal entities" href="trustframework.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="../_static/my_style.css" type="text/css" />
 
@@ -26,7 +26,7 @@
     <nav class="navbar navbar-dark bg-primary shadow">
       <div class="container-fluid">
         <a class="navbar-brand" href="../index.html ">
-          InteropBlk
+          Blockchain Interoperability
         </a>
       </div>
     </nav>
@@ -35,10 +35,10 @@
     <ul>
       <li class="ordenador">
         «
-        <a href="trustframework.html" title="Previous document"><span class="section-number">2. </span>Trust Framework: trusted registration process of legal entities</a>
+        <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
       </li>
       <li class="ordenador">
-        <a href="privacycred.html" title="Next document"><span class="section-number">4. </span>PrivacyCred system</a>
+        <a href="trustframework.html" title="Next document"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a>
         »
       </li>
     </ul>
@@ -46,13 +46,13 @@
 
   <nav class="movil">
       <div class="movil">
-        <a class="btn btn-light" href="trustframework.html" title="Prev document">
+        <a class="btn btn-light" href="introduction.html" title="Prev document">
           <i class="bi bi-arrow-left-circle-fill" style="color:indigo;"></i>
           Previous
         </a>
       </div>
       <div class="movil floatright">
-        <a class="btn btn-light" href="privacycred.html" title="Next document">
+        <a class="btn btn-light" href="trustframework.html" title="Next document">
           Next
           <i class="bi bi-arrow-right-circle-fill" style="color:indigo;"></i>
         </a>
@@ -71,11 +71,11 @@
           <div class="body" role="main">
             
   <div class="section" id="did-methods-for-organisations">
-<h1><span class="section-number">3. </span>DID Methods for organisations<a class="headerlink" href="#did-methods-for-organisations" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>DID Methods for organisations<a class="headerlink" href="#did-methods-for-organisations" title="Permalink to this headline">¶</a></h1>
 <p>The system supports several DID Methods, using the Universal Resolver to resolve each DID into a corresponding DID Document.
 This section describes in detail the different DID Methods used by each network.</p>
 <div class="section" id="elsi-did-method">
-<h2><span class="section-number">3.1. </span>ELSI DID Method<a class="headerlink" href="#elsi-did-method" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>ELSI DID Method<a class="headerlink" href="#elsi-did-method" title="Permalink to this headline">¶</a></h2>
 <p>In the Alastria Red T we use <strong>ELSI</strong> for juridical persons with identities anchored into a Public-Permissioned blockchain: <cite>did:elsi</cite>.</p>
 <p>The name ELSI stands for <strong>E</strong><code class="docutils literal notranslate"><span class="pre">TSI</span></code> <strong>L</strong><code class="docutils literal notranslate"><span class="pre">egal</span> <span class="pre">person</span></code> <strong>S</strong><code class="docutils literal notranslate"><span class="pre">emantics</span></code> <strong>I</strong><code class="docutils literal notranslate"><span class="pre">dentifier</span></code>, because it is based on the <em>Legal person semantic identifier</em> defined in the <a class="reference external" href="https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.04.02_20/en_31941201v010402a.pdf">European Norm ETSI EN 319 412-1</a>, related to digital signatures, peer entity authentication, data authentication as well as data confidentiality.</p>
 <p>The basic idea is to generate the DID deterministically from an existing and widely accepted identifier, which is already required by any organisation in the real world in order to perform any relevant activity.</p>
@@ -97,7 +97,7 @@ Of course, there is nothing preventing reuse of common logic across both impleme
 <p>The ETSI norm on which ELSI is based specifies several possible identifiers that can be used to build the DID. The two most common and the ones used in ELSI are the <cite>VAT</cite> (Tax Identifier) and the <cite>LEI</cite> (<a class="reference external" href="https://www.gleif.org">Legal Entity Identifier</a>).</p>
 <p>Using both <cite>VAT</cite> and <cite>LEI</cite> in creating the DID covers every juridical person that can participate in a blockchain network, not only in the EU but in most of the world. In any case, the system is extensible and it is fairly easy to incorporate new legal identifiers if the need arises in the future.</p>
 <div class="section" id="elsi-did-syntax">
-<h3><span class="section-number">3.1.1. </span>ELSI DID syntax<a class="headerlink" href="#elsi-did-syntax" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.1. </span>ELSI DID syntax<a class="headerlink" href="#elsi-did-syntax" title="Permalink to this headline">¶</a></h3>
 <p>The ELSI DID Method refers only to legal persons, so we are using the <cite>id-etsi-qcs-SemanticsId-Legal</cite> definition described in Section 5.1 of ETSI EN 319 412-1.</p>
 <p>Creating a DID is extremely simple and fully decentralized (does not require participation of any central authority), assuming that the legal person already exists. Its definition using ABNF syntax is:</p>
 <div class="highlight-abnf notranslate"><div class="highlight"><pre><span></span><span class="nc">did</span> <span class="o">=</span> <span class="l">&quot;did:elsi:&quot;</span> <span class="nc">id-etsi-qcs-SemanticsId-Legal</span>
@@ -112,7 +112,7 @@ Of course, there is nothing preventing reuse of common logic across both impleme
 </ul>
 <p>Some examples of DIDs are the following:</p>
 <table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-number">Table 3.1 </span><span class="caption-text">Some example ELSI DIDs</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 2.1 </span><span class="caption-text">Some example ELSI DIDs</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col style="width: 40%" />
 <col style="width: 60%" />
@@ -145,7 +145,7 @@ Of course, there is nothing preventing reuse of common logic across both impleme
 </table>
 </div>
 <div class="section" id="elsi-did-document">
-<h3><span class="section-number">3.1.2. </span>ELSI DID Document<a class="headerlink" href="#elsi-did-document" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.1.2. </span>ELSI DID Document<a class="headerlink" href="#elsi-did-document" title="Permalink to this headline">¶</a></h3>
 <p>An example DID Document is the following:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;payload&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -198,14 +198,14 @@ Of course, there is nothing preventing reuse of common logic across both impleme
 </div>
 </div>
 <div class="section" id="si-chain-did-method">
-<h2><span class="section-number">3.2. </span>SI-Chain DID Method<a class="headerlink" href="#si-chain-did-method" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>SI-Chain DID Method<a class="headerlink" href="#si-chain-did-method" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title">TODO</p>
 <p>Specify the details of the DID Method in SI-Chain</p>
 </div>
 </div>
 <div class="section" id="ibsi-did-method">
-<h2><span class="section-number">3.3. </span>IBSI DID Method<a class="headerlink" href="#ibsi-did-method" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>IBSI DID Method<a class="headerlink" href="#ibsi-did-method" title="Permalink to this headline">¶</a></h2>
 <div class="topic">
 <p class="topic-title">TODO</p>
 <p>Specify the details of the DID Method in IBSI</p>
@@ -222,24 +222,24 @@ Of course, there is nothing preventing reuse of common logic across both impleme
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. DID Methods for organisations</a><ul>
-<li><a class="reference internal" href="#elsi-did-method">3.1. ELSI DID Method</a><ul>
-<li><a class="reference internal" href="#elsi-did-syntax">3.1.1. ELSI DID syntax</a></li>
-<li><a class="reference internal" href="#elsi-did-document">3.1.2. ELSI DID Document</a></li>
+<li><a class="reference internal" href="#">2. DID Methods for organisations</a><ul>
+<li><a class="reference internal" href="#elsi-did-method">2.1. ELSI DID Method</a><ul>
+<li><a class="reference internal" href="#elsi-did-syntax">2.1.1. ELSI DID syntax</a></li>
+<li><a class="reference internal" href="#elsi-did-document">2.1.2. ELSI DID Document</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#si-chain-did-method">3.2. SI-Chain DID Method</a></li>
-<li><a class="reference internal" href="#ibsi-did-method">3.3. IBSI DID Method</a></li>
+<li><a class="reference internal" href="#si-chain-did-method">2.2. SI-Chain DID Method</a></li>
+<li><a class="reference internal" href="#ibsi-did-method">2.3. IBSI DID Method</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="trustframework.html"
-                        title="previous chapter"><span class="section-number">2. </span>Trust Framework: trusted registration process of legal entities</a></p>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter"><span class="section-number">1. </span>Introduction</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="privacycred.html"
-                        title="next chapter"><span class="section-number">4. </span>PrivacyCred system</a></p>
+  <p class="topless"><a href="trustframework.html"
+                        title="next chapter"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a></p>
 <form class="search" action="../search.html" method="get">
   <input type="text" name="q"
    placeholder="type to search" />
@@ -256,10 +256,10 @@ Of course, there is nothing preventing reuse of common logic across both impleme
     <ul>
       <li class="ordenador">
         «
-        <a href="trustframework.html" title="Previous document"><span class="section-number">2. </span>Trust Framework: trusted registration process of legal entities</a>
+        <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
       </li>
       <li class="ordenador">
-        <a href="privacycred.html" title="Next document"><span class="section-number">4. </span>PrivacyCred system</a>
+        <a href="trustframework.html" title="Next document"><span class="section-number">3. </span>Trust Framework: trusted registration process of legal entities</a>
         »
       </li>
     </ul>
@@ -267,13 +267,13 @@ Of course, there is nothing preventing reuse of common logic across both impleme
 
   <nav class="movil">
       <div class="movil">
-        <a class="btn btn-light" href="trustframework.html" title="Prev document">
+        <a class="btn btn-light" href="introduction.html" title="Prev document">
           <i class="bi bi-arrow-left-circle-fill" style="color:indigo;"></i>
           Previous
         </a>
       </div>
       <div class="movil floatright">
-        <a class="btn btn-light" href="privacycred.html" title="Next document">
+        <a class="btn btn-light" href="trustframework.html" title="Next document">
           Next
           <i class="bi bi-arrow-right-circle-fill" style="color:indigo;"></i>
         </a>

@@ -1,6 +1,6 @@
-###############################################################
-Trust Framework: trusted registration process of legal entities
-###############################################################
+#######################################################
+Trust Framework: trusted registration of legal entities
+#######################################################
 
 The trust framework is designed to be largely decentralised.
 
