@@ -1,0 +1,68 @@
+{
+    "version": "2.0",
+    "jurisdictions": [
+        "EEA"
+    ],
+    "receiptID": "c0fbfbd3-f380-4cb4-a4f9-328621c3824d",
+    "receiptTimestamp": "1551959162",
+    "consentTimestamp": "1551959162",
+    "collectionMethod": "W3CVC",
+    "language": "en",
+    "dataSubjectID": "did:peer:0z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvktH",
+    "consentType": "EXPLICIT",
+    "withdrawConsent": "https://trub.com/consent/v2.3/withdraw",
+    "rights": [
+        "https://trub.com/consent/v2.3/rights"
+    ],
+    "isChild": false,
+    "validity": "90 days",
+    "consentID": "9adf514a-3a77-415c-86a0-569c075ee547",
+    "verificationKey": "66D6EBEEF47B5D6D421417874BDC9A5F9A8FD2D1C881FAAB7EF21EC02FB40D67",
+    "collectedBy": "The Trusted Business Inc.",
+    "controllers": [
+        {
+            "controllerDID": "did:elsi:VATES-A81948077",
+            "controllerName": "The Trusted Business Inc.",
+            "controllerWebsite": "https://trub.com/",
+            "controllerContact": [
+                "trub@example.com (email)",
+                "+0-000-0000 (phone)",
+                "@trub (twitter)"
+            ],
+            "controllerDPO": [
+                "trub-DPO@example.com (email)",
+                "+0-000-0001 (phone)",
+                "@trubdpo (twitter)"
+            ],
+            "policies": [
+                "https://trub.com/privacy-policy",
+                "https://trub.com/t&C"
+            ]
+        }
+    ],
+    "purposes": [
+        {
+            "purpose": "Send unpaid bills data to your Social Services",
+            "personalData": [
+                "name",
+                "address",
+                "paymentDetails"
+            ],
+            "sensitivePersonalData": [],
+            "processing": [
+                "send"
+            ],
+            "dataStorage": "6 months",
+            "thirdParties": [
+                {
+                    "thirdPartyID": "did:elsi:VATES-P2906700F",
+                    "thirdPartyName": "Ayuntamiento de Malaga, Servicios Sociales",
+                    "thirdPartyRole": "SocialServicesProvider"
+                }
+            ],
+            "internationalTransfer": false,
+            "profiling": false,
+            "automatedDecisionMaking": false
+        }
+    ]
+}

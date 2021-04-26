@@ -1,0 +1,45 @@
+#pageheader {
+    color: white;
+    background-color: #007bff;
+    margin: 0;
+}
+#mytitle {
+    color: white;
+    background-color: #007bff;
+}
+
+.note {
+    border: 1px solid #ccc;
+    background-color: #e7f2fa;
+}
+
+p.admonition-title {
+    display: block;
+    color: white;
+    margin-left: -7px;
+    margin-top: -7px;
+    margin-right: -7px;
+    padding-left: 7px;
+}
+
+div.note p.admonition-title {
+    background-color: #6ab0de;
+}
+
+div.caution p.admonition-title, div.important p.admonition-title, div.warning p.admonition-title {
+    background-color: #c7404d;
+}
+
+.admonition p.admonition-title + p {
+    display: block;
+}
+
+p.admonition-title:after {
+    content: "";
+}
+
+.myh2, p.rubric {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: indigo;
+}

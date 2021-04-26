@@ -1,0 +1,46 @@
+@startuml PrivacyConsent_Issuance
+
+autonumber
+skinparam sequenceArrowThickness 3
+skinparam roundcorner 10
+skinparam maxmessagesize 300
+
+box "Issuer" #f1f9ff
+  database "Issuer\nbackend" as IS
+end box
+
+box "Citizen" #f1f9ff
+  actor "Citizen\nwith\nmobile" as CI
+end box
+
+box "Trust Framework" #f1f9ff
+  participant "Universal\nResolver" as UR
+end box
+
+== Identification of citizen ==
+CI -> IS: Citizen logs into Issuer system
+IS -> IS: Use KYC data to verify identity
+IS -> CI: Present option to generate Consent
+
+== Consent credential generation ==
+CI -> IS: Provide consent
+IS -> IS: Generate credential and sign it
+IS -> IS: Save consent credential
+IS -> IS: Display Credential QR
+
+== Citizen receives Consent credential ==
+CI -> CI: Opens QR scanner
+IS -[#0000FF]-> CI: Scan Credential QR
+note right: QR contains URL\nto obtain Credential data
+CI -> IS: Request full Credential
+activate IS
+return Receive Credential data
+
+== Verification of Credential ==
+CI -> CI: Verify Credential
+CI -> UR: Verify signature of Credential
+CI -> CI: Save Credential
+
+
+@enduml
+

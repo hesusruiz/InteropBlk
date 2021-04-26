@@ -1,0 +1,58 @@
+@startjson SafeIsland_VCSample
+#highlight "iss"
+#highlight "vc"
+#highlight "vc" / "credentialSubject"
+#highlight "vc" / "credentialSubject" / "issuedAt"
+
+{
+      "iss": "did:elsi:VATES-A86212420",
+      "sub": "46106508H",
+      "iat": 1608502564,
+      "exp": 1608934564,
+      "vc": {
+            "@context": [
+                  "https://www.w3.org/2018/credentials/v1",
+                  "https://alastria.github.io/identity/credentials/v1",
+                  "https://privacycred.org/.well-known/privacycred/v1"
+            ],
+            "type": [
+                  "VerifiableCredential",
+                  "AlastriaVerifiableCredential",
+                  "PrivacyCredential"
+            ],
+            "credentialSubject": {
+                  "credentialData": {
+                        "Any credential": ""
+                  },
+                  "issuedAt": [
+                        "List of networks",
+                        "networkId.alastria"
+                  ],
+                  "levelOfAssurance": 2
+            }
+      }
+}
+@endjson
+
+@startjson SafeIsland_VCDataModel
+{
+      "analysis": {
+            "<color:red>id": "<b>string</b>: unique ID of analysis",
+            "ver": "number: version number of analysis",
+            "date": "date: date when test sample taken",
+            "type": "string: type of test taken",
+            "result": "string: result of test"
+      },
+      "patient": {
+            "name": "string: surnames and name",
+            "idnumber": "string: identifier number"
+      },
+      "lab": {
+            "name": "string: name of entity performing test",
+            "address": "string: postal address of entity",
+            "phone": "string: phone number of entity"
+      },
+      "comments": "string: additional data"
+}
+@endjson
+

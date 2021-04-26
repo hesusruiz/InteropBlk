@@ -1,0 +1,128 @@
+
+Introduction
+============
+
+This document describes a proposal for a Proof of Concept (PoC) of a very simple interoperability mechanism across applications running in different blockchain networks.
+It is based on Verifiable Credentials and it is suitable for a class of applications which are very common in the real world.
+
+The system has the following characteristics.
+
+It does not use digital identities of natural persons or any PII data
+    This allows to focus on the technical properties of the system, avoiding the complexities and legal implications associated to the management of PII and crossborder tranfer of that type of data.
+
+    However, it is expected that many pieces of the system could be leveraged in the future for other use cases where PII is involved.
+
+Each network maintains a Trusted List of entities
+    Each network has to maintain a list of the entities authorised to issue the certificates used in the PoC. The lists are different for each network, and there is not a requirement to have a global common list for all the networks.
+
+Implementations of the Trusted List can be different in each network, but they have to implement and expose a public API to check identities of the entities in the list and associated public keys.
+    In order to verify a certificate issued by an entity in the Trusted List of a given network, the Verifier has to be able to call a public API (non-authenticated) to query the DID of the entity that issued (and signed) the credential. This could be done by using one or two APIs, something to be decided later.
+
+    An implementation with 2 APIs would have:
+
+    1. A general DID Resolution API to get the DID Document of the DID that signed the credential. This is the API for any DID and any certificate.
+
+    2. An API to check if the DID is a member of the Trusted List of entities for this specific certificate.
+
+    Alternatively, the option with a single API would merge the two functionalities into one, and the API would receive a DID and return the DID Document only if the entity is in the Trusted List.
+
+    In any case, the Verifier entity can obtain the public key of the trusted entity that signed the credential (the key is in the DID Document), and verify the credential.
+
+Each Trusted List in each network is managed by a well-known entity which is trusted by the other networks (Root Trusted Entity).
+    There is a special entity in each network which is responsible for managing the Trusted List of that network, adding and removing the entities authorised to issue credentials in that network. We will call that entity the Root Trusted Entity of the network. Each network has a different Root Trusted Entity, and each network can implement a different process for managing the Trusted List.
+
+Verifier entities have to trust in the process used to manage the Trusted List in other networks.
+    A verifier has to trust that if a DID is in a Trusted List in some network, then the legal entity associated to that DID is authorised to issue certificates, and that all the information in the DID Document is also trusted, including the public key.
+    
+    This implies that verifiers have to trust that the Root Trusted Entities in each network perform their management tasks in the proper way.
+    
+Verifiers have to understand the DID Methods implemented by each network.
+    Ideally all networks use the same DID Method, even though the DIDs are anchored to different networks. Otherwise, the verifier has to understand all DID Methods of all networks with which it interacts. In the initial implementation of the PoC, it is probably a good idea to try to use one or two DID Methods, to simplify implementation.
+
+The DID Method for juridical entities used in Spain (Alastria Red T) is ELSI
+    The DID Method used in Alastria is **ELSI**, which stands for **E**\ ``TSI`` **L**\ ``egal person`` **S**\ ``emantics`` **I**\ ``dentifier``, because it is based on the *Legal person semantic identifier* defined in the `European Norm ETSI EN 319 412-1 <https://www.etsi.org/deliver/etsi_en/319400_319499/31941201/01.04.02_20/en_31941201v010402a.pdf>`_, related to digital signatures, peer entity authentication, data authentication as well as data confidentiality.
+
+    The ELSI DID Method refers only to **legal persons**, and creating a DID is extremely simple and fully decentralized (does not require participation of any central authority), assuming that the legal person already exists in the real world.
+
+    ELSI is described in detail in :doc:`didmethods`
+
+
+
+
+
+
+
+
+
+We describe how PrivacyCred matches the requirements from the eHealth Network, described in the document `Interoperability of health certificates Trust framework`_.
+PrivacyCred is a generic credential system which is designed to be secure, privacy-preserving, scalable, performant and robust.
+
+.. _Interoperability of health certificates Trust framework: https://ec.europa.eu/health/sites/health/files/ehealth/docs/trust-framework_interoperability_certificates_en.pdf
+
+It is designed specifically for some important use cases where physical, on-person verification of identity of holder is needed and where normal W3C Verifiable Credential flows are not fully suitable as they are normally designed currently.
+
+The system is compliant with the Guidelines published by the eHealth Network, but includes some differentiating characteristicas like:
+
+- It supports both W3C Verifiable Credentials and CBOR/COSE.
+- It is based on blockchain technology.
+- It is interoperable with any other implementation compatible with the eHealth interoperability guidelines, whether they are implemented with blockchain or not.
+- Citizens do not have to register in any Digital Identity scheme, and no citizen information is registered in the blockchain. It uses `Peer DIDs <https://identity.foundation/peer-did-method-spec/>`_ which are never stored or registered in the blockchain.
+
+In order to better describe the characteristics of the system an how it complies with the eHealth Guidelines (and how it differs in some aspects), we use *exactly* the same text of the eHealth document with sections marked like below:
+
+.. topic:: PrivacyCred
+    
+    Text marked like this is additional to the original document and describes some aspects specific to this implementation
+
+For the explanation of how PrivacyCred can complement and improve the proposed eHealth Network system, first we need to draw the proposed Trust Framework in a different but completely equivalent way, in the following figure.
+
+.. figure:: images/ehealth_PKD.png
+   :width: 80 %
+   :alt: EU PKD system
+
+   EU PKD system
+
+In the standard eHealth Network system, each country uploads to a central service the keys/certificates specific to that country, and downloads from that service the keys/certificates from all the other countries that use the system. In this way, the EU Public Key Directory (EU PKD) helps the different countries to maintain in each country a database with all the keys/certificates for all authorised issuers.
+
+When one verifier entity in a country needs to verify a certificate presented by a traveler, it can do so by checking against the local copy (meaning in the verification contry) of all keys/certificates maintained via the replication mechanism described above.
+
+There are several ways in which a blockchain-based system like PrivacyCred could add value without modifying the essential processes or safety of the proposed system.
+
+**Option 1**
+
+Regarding the list of authorised issuers, the eHealth Network system requires that each for each country its list should be published on its PHA’s website (national backend server). In addition, the list may also be published through an open API.
+
+In Option 1, in addition to publishing the list in the website it could be published in a blockchain. In that way, the list is hyper-replicated in a secure and tamper-resistant way in all the nodes of the blockchain network.
+
+This would facilitate verification by any entity (hotels, restaurants, etc) without overloading the website of the PHA. In other words, it implements a massively scalable and highly available read-only database for checking the keys/certificates of authorised issuers. The number of writes to the blockchain is very low (when the list of authorised issuers changes), and the reads are performed locally in each of the nodes operated by each entity participating in the blockchain.
+
+In a sense, it would be a mechanism complementary to the open API mechanism but cheaper, more available and more scalable.
+
+**Option 2**
+
+Similar to Option 1, but publishing the full EU list in the blockchain. This could be done by a given country using the database that it has using the EU PKD, or it could even be performed by the EU entity providing the PKD service (most probably the Commission, as it happens with the European Federation Gateway Service).
+
+Please note that in Option 1, there could be several countries that coordinate with each other and publish their lists in the same way in the blockchain, creating a single read-only list for any entity that wants to verify certificates.
+
+**Other options**
+
+In the future, there could be more "ambitious" options. For example, when EBSI (European Blockchain Services Infrastructure) is in production, it could be used as a complement or even replacing completely the EU PKD centralised system. Each country would keep their sovereignty regarding managing their authorised issuers list, but the replication of that data across the EU could be simplified enormously using the EBSI blockchain network.
+
+In the same way, there could be different "national" or even pan-european blockchain networks that could be used by countries to "disseminate" the master lists in a safe, cheap and available way.
+
+The eHealth Network document mentions the ICAO PKD. As the ICAO PKD site explains:
+
+    The publication of a Master List enables other receiving States to obtain a set of CSCA certificates from a single source (the Master List issuer) rather than establish a direct bilateral exchange with each of the Issuing Authorities or organizations represented on that list. However, *the more instances of a CSCA certificate that a receiving State acquires* — whether through multiple Master Lists, bilateral exchange, or both — *the more confident* the receiving State can be that the CSCA certificate they are using for validation is authentic. In this respect, Master Lists contribute to building and improving trust based on CSCA certificates.
+
+The blockchain-based PKD is not intended to replace the centralized PKD (at least for the moment), but instead to complement it and provide in a secure way more places where the lists are available for verifiers.
+For example, the current ICAO PKD service is hosted in identical systems within two geographically separate sites (location A being located in Berlin, Germany and location B being located in Abu Dhabi, United Arab Emirates). An operator location is additionally provided within the ICAO headquarters (being located in Montreal, Canada). The two hosting sites are designed so that each of them can take over the work of the other site should one of them fail.
+
+A blockchain-based system could provide several benefits, including:
+
+* Greater resiliency by replicating in a simple and secure way the Master Lists and associated data.
+
+* Better scalability, as most of the operations in the PKD system are reads (for verifications). Using a blockchain the data is hyper-replicated in a tamper-resistant way in all the nodes of the network, and the verifications can be done to servers which are very close to the geographical location of the verifier.
+
+* An alternative method to the current download method for users of the PKD data. It is enough to operate a node in the blockchain network and the data is updated automatically when the central PKD repository is updated (assuming the update process includes updating the data in the blockchain). Nobody can tamper with the data and the history of the previous versions of the Master Lists are available if needed.
+
+

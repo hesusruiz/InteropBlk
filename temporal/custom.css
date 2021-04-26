@@ -1,0 +1,40 @@
+/* Test */
+
+html {
+    font-size: 16px;
+}
+
+body, p {
+    font-size: 1rem;
+}
+
+
+/* Fix fontsize in tables to be 1rem instead of 0.9rem */
+.rst-content table.docutils td>p, .rst-content table.docutils th>p {
+    font-size: 1.0rem !important;
+}
+
+/* Fix maximum widh drom 800px */
+.wy-nav-content {
+    max-width: 1500px !important;
+}
+
+/* and fix wrap bug per https://rackerlabs.github.io/docs-rackspace/tools/rtd-tables.html */
+.wy-table-responsive table td {
+    /* !important prevents the common CSS stylesheets from overriding
+    this as on RTD they are loaded after this stylesheet */
+    white-space: normal !important;
+}
+
+.wy-table-responsive {
+    overflow: visible !important;
+}
+
+.wy-nav-top {
+    background-color: #001064;
+}
+
+.preDeactivate {
+    word-wrap: break-word;
+    word-break: break-all;
+}

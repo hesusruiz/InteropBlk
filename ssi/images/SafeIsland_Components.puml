@@ -1,0 +1,108 @@
+@startuml SafeIsland_Components
+
+
+package "Issuer Entity" {
+
+
+  card OperatorApp [
+    <b>Operator App
+    ====
+    Data entry for Citizen
+    and Certificates
+  ]
+
+
+  node IssuerServer [
+    <b>Issuer server
+    ====
+    Manages Certificates
+  ]
+
+  database IssuerDatabase [
+    <b>Issuer database
+    ====
+    Encrypted certificates
+  ]
+
+}
+
+package "Citizen Entity" {
+
+  card CitizenApp [
+    <b>Citizen WebApp
+    ====
+    Downloaded from Issuer server
+    or any other secure server
+  ]
+
+}
+
+package "Verifier Entity" {
+
+  card VerifierApp [
+    <b>Verifier App
+    ====
+    Verifies
+    certificates
+  ]
+
+
+  node VerifierServer [
+    <b>Verifier server
+    ====
+    Logs verifications
+    for auditing
+  ]
+
+  database VerifierDatabase [
+    <b>Verifier database
+    ====
+    Logs verifications
+    Privacy-preserving
+  ]
+
+
+}
+
+package Blockchain {
+
+  database Identities [
+    <b>Legal Person Identities
+    ====
+    Identities of Legal Persons:
+    - Issuers and Verifiers
+    ----
+    Never personal information
+  ]
+
+  node VerifierNode [
+    <b>Verifier node
+  ]
+
+  node IssuerNode [
+    <b>Issuer node
+  ]
+
+}
+
+IssuerDatabase -right-> IssuerNode
+
+
+OperatorApp .right.> CitizenApp: <b>QR</b>
+CitizenApp .right.> VerifierApp: <b>QR</b>
+OperatorApp --> IssuerServer
+IssuerServer -- IssuerDatabase
+
+IssuerNode -r- Identities
+VerifierNode -l- Identities
+
+
+VerifierNode -right-> VerifierDatabase
+
+VerifierApp --> VerifierServer
+VerifierServer -- VerifierDatabase
+
+
+
+@enduml
+

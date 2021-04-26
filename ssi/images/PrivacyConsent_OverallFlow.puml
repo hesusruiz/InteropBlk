@@ -1,0 +1,124 @@
+@startuml PrivacyConsent_OverallFlow_1
+
+skinparam ActivityBorderColor #grey
+skinparam ArrowColor #black
+
+|Citizen|
+start
+
+#AntiqueWhite:**login to government**
+  with legally accepted
+  identification method;
+
+|Local Government|
+#lightblue:**verify identity**
+* National ID number
+* Name;
+#lightblue:**request new credential**;
+
+|Citizen|
+#AntiqueWhite:**generate new Peer DID**;
+#AntiqueWhite:**generate object**
+* include Peer DID
+* sign object with private key
+   of Peer DID;
+#AntiqueWhite:**send signed object**;
+
+|Local Government|
+#lightblue:**validate signature**
+* public key corresponds
+   with Peer DID;
+#lightblue:**generate object**
+* citizen Peer DID
+* citizen National ID
+* citizen Name
+* sign credential with
+   Local Govt. key;
+#lightblue:**send credential**;
+
+|Citizen|
+#AntiqueWhite:**receive&validate credential**
+* citizen Peer DID
+* citizen National ID
+* citizen Name
+* signed by Local Govt.;
+#AntiqueWhite:**store credential**;
+stop
+
+@enduml
+
+
+
+
+@startuml PrivacyConsent_OverallFlow_2
+
+skinparam ActivityBorderColor #grey
+skinparam ArrowColor #black
+
+|Citizen|
+start
+#AntiqueWhite:**login to business**
+  with existing customer identification;
+
+|Business|
+#lightgreen:**verify identity** with existing KYC data
+* National ID number
+* Name;
+
+#lightgreen:**request credential**;
+
+|Citizen|
+#AntiqueWhite:**generate object**
+* include credential received from Local Govt.
+* sign object with private key of Peer DID;
+#AntiqueWhite:**send object**;
+
+|Business|
+#lightgreen:**validate signatures**
+* signature Local Govt.
+* signature of Peer DID;
+#lightgreen:**validate data**
+* citizen data == KYC data;
+
+#lightgreen:**create object**
+* include object received
+* sign object;
+#lightgreen:**store credential**
+* citizen Peer DID
+* citizen National ID
+* citizen Name
+* signed by Peer DID
+* signed by Local Govt.
+* signed by Business;
+#lightgreen:**send credential**;
+
+|Citizen|
+#AntiqueWhite:**receive&validate credential**
+* citizen Peer DID
+* citizen National ID
+* citizen Name
+* signed by Peer DID
+* signed by Local Govt.
+* signed by Business;
+
+#AntiqueWhite:store credential;
+stop
+
+@enduml
+
+
+
+
+
+
+@startuml icons
+title: <size:50><color:red><&heart></color></size>Use of OpenIconic
+class Wifi
+note left
+Click on <&wifi>
+end note
+@enduml
+
+@startuml listSkinParams
+help skinparams
+@enduml

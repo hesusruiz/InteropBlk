@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Trust Framework: trusted registration process of legal entities &#8212; InteropBlk</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/better.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. DID Methods for organisations" href="didmethods.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="stylesheet" href="../_static/my_style.css" type="text/css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+  </head><body>
+
+    <nav class="navbar navbar-dark bg-primary shadow">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html ">
+          InteropBlk
+        </a>
+      </div>
+    </nav>
+  <div class="related top">
+  <nav id="rellinks" class="ordenador">
+    <ul>
+      <li class="ordenador">
+        «
+        <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
+      </li>
+      <li class="ordenador">
+        <a href="didmethods.html" title="Next document"><span class="section-number">3. </span>DID Methods for organisations</a>
+        »
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="movil">
+      <div class="movil">
+        <a class="btn btn-light" href="introduction.html" title="Prev document">
+          <i class="bi bi-arrow-left-circle-fill" style="color:indigo;"></i>
+          Previous
+        </a>
+      </div>
+      <div class="movil floatright">
+        <a class="btn btn-light" href="didmethods.html" title="Next document">
+          Next
+          <i class="bi bi-arrow-right-circle-fill" style="color:indigo;"></i>
+        </a>
+      </div>
+  </nav>
+  <nav id="breadcrumbs">
+    <ul>
+      <li><a href="../index.html">Home</a></li> 
+    </ul>
+  </nav>
+  </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="trust-framework-trusted-registration-process-of-legal-entities">
+<h1><span class="section-number">2. </span>Trust Framework: trusted registration process of legal entities<a class="headerlink" href="#trust-framework-trusted-registration-process-of-legal-entities" title="Permalink to this headline">¶</a></h1>
+<p>The trust framework is designed to be largely decentralised.</p>
+<p>The identities of the legal persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.</p>
+<p>However, there is one centralised element: the root of trust at the top of the hierarchy should be a trusted entity in the ecosystem that is the one bootstraping the system. Typically it should be a regulatory body or a public administration.</p>
+<p>The approach is described in the following figure.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/SafeIsland_TrustFramework.png"><img alt="The Trust Framework in the blockchain" src="../_images/SafeIsland_TrustFramework.png" style="width: 80%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">The Trust Framework in the blockchain.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="creating-identities">
+<h2><span class="section-number">2.1. </span>Creating identities<a class="headerlink" href="#creating-identities" title="Permalink to this headline">¶</a></h2>
+<p>A new identity can only be registered as a sub-node by an existing entity already registered in the system. The API used is <code class="docutils literal notranslate"><span class="pre">/api/did/v1/identifiers</span></code> and its definition is the following:</p>
+<dl class="http post">
+<dt>
+<code class="sig-name descname"><span class="pre">POST</span> </code><code class="sig-name descname"><span class="pre">/api/did/v1/identifiers</span></code></dt>
+<dd><p>Create an Identity anchored in the blockchain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Request JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DID</strong> (<em>string</em>) – the DID of the new identity, example: “did:elsi:VATES-B60645900”</p></li>
+<li><p><strong>domain_name</strong> (<em>string</em>) – Domain name to assign in the hierarchy, example: “in2.ala”</p></li>
+<li><p><strong>website</strong> (<em>string</em>) – Website of the entity, example: “www.in2.es”</p></li>
+<li><p><strong>commercial_name</strong> (<em>string</em>) – Commercial name, example: “IN2 Innovating 2gether”</p></li>
+<li><p><strong>new_privatekey</strong> (<em>PrivatekeyJWK</em>) – The private key of the new entity</p></li>
+<li><p><strong>parent_privatekey</strong> (<em>PrivatekeyJWK</em>) – The Private Key of caller (in this case the owner of “ala”)</p></li>
+</ul>
+</dd>
+</dl>
+<p>An example of the data in the request body:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;DID&quot;</span><span class="p">:</span> <span class="s2">&quot;did:elsi:VATES-B60645900&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;domain_name&quot;</span><span class="p">:</span> <span class="s2">&quot;in2.ala&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;website&quot;</span><span class="p">:</span> <span class="s2">&quot;www.in2.es&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;commercial_name&quot;</span><span class="p">:</span> <span class="s2">&quot;IN2 Innovating 2gether&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;new_privatekey&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;kty&quot;</span><span class="p">:</span> <span class="s2">&quot;EC&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;crv&quot;</span><span class="p">:</span> <span class="s2">&quot;secp256k1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;d&quot;</span><span class="p">:</span> <span class="s2">&quot;Dqv3jmu8VNMKXWrHkppr5473sLMzWBczRhzdSdpxDfI&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;FTiW0a4r7S2SwjL7AlFlN1yJNWF--4_x3XTTxkFbJ9o&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;MmpxbQCOZ0L9U6rLLkD_U8LRGwYEHcoN-DPnEdlpt6A&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;parent_privatekey&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;kty&quot;</span><span class="p">:</span> <span class="s2">&quot;EC&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;crv&quot;</span><span class="p">:</span> <span class="s2">&quot;secp256k1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;d&quot;</span><span class="p">:</span> <span class="s2">&quot;Dqv3jmu8VNMKXWrHkppr5473sLMzWBczRhzdSdpxDfI&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;NKW_0Fs4iumEegzKoOH0Trwtje1sXsG9Z1949sA8Omo&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;g4B3EI0qIdlcXTn-2RpUxgVX-sxNFdqCQDD0aHztVkk&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Response JSON Object</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>didDocument</strong> (<em>DIDDocument</em>) – The DID document associated to the input DID</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>A more detailed explanation of each field follows:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">DID</span></code></dt><dd><p>is the DID of the new entity. We support ELSI DID method (ELSI_DID_Method) and AlastriaID. The DID has to be created before the call to the API with the appropriate method for the DID. In the case of ELSI this is trivial and described in the section mentioned above.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">domain_name</span></code></dt><dd><p>the domain name for the new entity in the Trust Framework. In the example it is <cite>in2.ala</cite> because it will be a sub-node of the Alastria one. The new identity will be created as a child node of the existing node owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>. If the parent domain name specified here is not owned by the entity controlling the <code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code>, an error is returned and no action is taken.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">website</span></code></dt><dd><p>the website address in the off-chain world, so other participants can look more information about the entity. This field is informational only. However, it can be used by external appications to check that the entity in th ereal world corresponds to the one registered in th eblockchain.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">commercial_name</span></code></dt><dd><p>the name of the company as it appears in the official register of the country/region. For example, in the case of IN2 (a Spanish business), the name should be the one registered in the <a class="reference external" href="http://www.rmc.es/Home.aspx?lang=en">Business Registry of Spain</a>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">new_privatekey</span></code></dt><dd><p>is the Private Key of the new entity, in JWK format. In this case the new entity is IN2. Please make sure the server being called is highly trusted.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">parent_privatekey</span></code></dt><dd><p>is the Private Key of the entity owning/controlling the parent node in the domain name, in JWK format. In this case the parent node is <cite>ala</cite>, corresponding to Alastria. Please make sure the server being called is highly trusted. Ideally, the server has to be operated by the same entity calling the API.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. Trust Framework: trusted registration process of legal entities</a><ul>
+<li><a class="reference internal" href="#creating-identities">2.1. Creating identities</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter"><span class="section-number">1. </span>Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="didmethods.html"
+                        title="next chapter"><span class="section-number">3. </span>DID Methods for organisations</a></p>
+<form class="search" action="../search.html" method="get">
+  <input type="text" name="q"
+   placeholder="type to search" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  <div class="related bottom">
+  <nav id="rellinks" class="ordenador">
+    <ul>
+      <li class="ordenador">
+        «
+        <a href="introduction.html" title="Previous document"><span class="section-number">1. </span>Introduction</a>
+      </li>
+      <li class="ordenador">
+        <a href="didmethods.html" title="Next document"><span class="section-number">3. </span>DID Methods for organisations</a>
+        »
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="movil">
+      <div class="movil">
+        <a class="btn btn-light" href="introduction.html" title="Prev document">
+          <i class="bi bi-arrow-left-circle-fill" style="color:indigo;"></i>
+          Previous
+        </a>
+      </div>
+      <div class="movil floatright">
+        <a class="btn btn-light" href="didmethods.html" title="Next document">
+          Next
+          <i class="bi bi-arrow-right-circle-fill" style="color:indigo;"></i>
+        </a>
+      </div>
+  </nav>
+  <nav id="breadcrumbs">
+    <ul>
+      <li><a href="../index.html">Home</a></li> 
+    </ul>
+  </nav>
+  </div>
+  <footer id="pagefooter">&copy; 2021, Licensed under a Creative Commons Attribution 4.0 International license.
+
+  </footer>
+
+<script>
+  $(function () {
+
+    // Make table with borders
+    $("table.docutils").addClass("table table-bordered")
+    $("table.docutils").removeClass("docutils")
+
+    // Format the footnotes as rows
+    // $("dl.footnote.brackets").addClass("row")
+    // $("dl.footnote.brackets>dt").addClass("col-sm-1")
+    // $("dl.footnote.brackets>dd").addClass("col-sm-11")
+
+    // $("dl.footnote.brackets>dt>span>a").removeClass("fn-backref")
+    // $("dl.footnote.brackets>dt>span").removeClass("brackets")
+    // $("dl.footnote.brackets>dt").removeClass("label")
+    // $("dl.footnote.brackets").removeClass("brackets")
+
+
+    
+
+  });
+
+</script>
+
+  
+  </body>
+</html>
