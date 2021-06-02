@@ -3,6 +3,7 @@
 #highlight "vc"
 #highlight "vc" / "credentialSubject"
 #highlight "vc" / "credentialSubject" / "issuedAt"
+#highlight "vc" / "credentialSubject" / "issuedAt" / "List of networks"
 
 {
       "iss": "did:elsi:VATES-A86212420",

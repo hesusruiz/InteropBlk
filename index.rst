@@ -10,7 +10,6 @@ Blockchain interoperability based on Verifiable Credentials
    ssi/didmethods
    ssi/trustframework
    ssi/portablecredentials
-   ssi/privacycred
    ssi/references
    
 
