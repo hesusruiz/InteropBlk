@@ -73,12 +73,15 @@
   <div class="section" id="trust-framework-trusted-registration-of-legal-entities">
 <h1><span class="section-number">3. </span>Trust Framework: trusted registration of legal entities<a class="headerlink" href="#trust-framework-trusted-registration-of-legal-entities" title="Permalink to this headline">¶</a></h1>
 <p>Each blockchain network has to implement its own Trust Framework, and there should be a global Trust Framework encompasing the Trust Frameworks of all interoperable networks.</p>
+<p>We now focus in the Trust Framework implementation for a single blockchain and later we discuss the trust relationships across blockchains.</p>
+<div class="section" id="example-trust-framework-in-red-t">
+<h2><span class="section-number">3.1. </span>Example: Trust Framework in Red T<a class="headerlink" href="#example-trust-framework-in-red-t" title="Permalink to this headline">¶</a></h2>
 <p>The trust framework of a blockchain network is basically composed of two things:</p>
 <ol class="arabic simple">
 <li><p>A list of the identities of trusted organisations stored in the blockchain, together with associated information for each entity.</p></li>
 <li><p>A process to add, modify and delete the trusted entities.</p></li>
 </ol>
-<p>The trust framework is designed to be largely decentralised.</p>
+<p>The trust framework is designed to be largely decentralised and represents the trust relationships in the real world.</p>
 <p>The identities of the juridical persons involved in the ecosystem are registered in a common directory implemented in the blockchain following a hierarchical scheme very similar to the DNS (Domain Name Service) schema in the Internet. Once an entity is registered in the system, it is completely autonomous for adding other entities that are managed as child entities.</p>
 <p>However, there is one centralised element: the root of trust at the top of the hierarchy should be a trusted entity in the ecosystem that is the one bootstraping the system. Typically it should be a regulatory body or a public administration.</p>
 <p>The approach for a single blockchain network is described in the following figure.</p>
@@ -97,11 +100,14 @@
 <ul class="simple">
 <li><p>An organisation can be registered in the blockchain only because its parent entity has registered it. No other entity in the Trust Framework can have performed the registration, not even the parent of the parent entity.</p></li>
 <li><p>An organisation is responsible for all its child entities, represented as child nodes in the blockchain.</p></li>
-<li><p>A third party</p></li>
+<li><p>A third party external to the framework</p></li>
 </ul>
+</div>
 <div class="section" id="creating-identities">
-<h2><span class="section-number">3.1. </span>Creating identities<a class="headerlink" href="#creating-identities" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.2. </span>Creating identities<a class="headerlink" href="#creating-identities" title="Permalink to this headline">¶</a></h2>
 <p>A new identity can only be registered as a sub-node by an existing entity already registered in the system. The API used is <code class="docutils literal notranslate"><span class="pre">/api/did/v1/identifiers</span></code> and its definition is the following:</p>
+<div class="topic">
+<p class="topic-title">Create identity</p>
 <dl class="http post">
 <dt>
 <code class="sig-name descname"><span class="pre">POST</span> </code><code class="sig-name descname"><span class="pre">/api/did/v1/identifiers</span></code></dt>
@@ -150,6 +156,7 @@
 </dl>
 </dd></dl>
 
+</div>
 <p>A more detailed explanation of each field follows:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">DID</span></code></dt><dd><p>is the DID of the new entity. We support ELSI DID method (ELSI_DID_Method) and AlastriaID. The DID has to be created before the call to the API with the appropriate method for the DID. In the case of ELSI this is trivial and described in the section mentioned above.</p>
@@ -178,7 +185,8 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">3. Trust Framework: trusted registration of legal entities</a><ul>
-<li><a class="reference internal" href="#creating-identities">3.1. Creating identities</a></li>
+<li><a class="reference internal" href="#example-trust-framework-in-red-t">3.1. Example: Trust Framework in Red T</a></li>
+<li><a class="reference internal" href="#creating-identities">3.2. Creating identities</a></li>
 </ul>
 </li>
 </ul>

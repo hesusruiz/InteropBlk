@@ -32,8 +32,11 @@ version = "0.1.0"
 extensions = [
     "helloworld",
     "sphinxcontrib.httpdomain",
-    "sphinx.ext.graphviz"
+    "sphinx.ext.graphviz",
+    "sphinxcontrib.plantuml",
 ]
+
+plantuml = "plantuml"
 
 root_doc = "index"
 
